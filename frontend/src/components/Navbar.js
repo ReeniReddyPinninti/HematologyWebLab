@@ -31,6 +31,7 @@ const Navbar = () => {
                   <li><Link to="/nb">Gaussian Naive Bayes</Link></li>
                   <li><Link to="/lr">Linear Regression</Link></li>
                   <li><Link to="/models">All models</Link></li>
+                  <a href="/image">Deep Learning</a>
                 </ul>
               </div>
               <span>{user.email}</span>

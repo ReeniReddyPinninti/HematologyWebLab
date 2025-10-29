@@ -15,6 +15,7 @@ import LR from './pages/lr';
 import NB from './pages/nb';
 import RF from './pages/rf';
 import MODELS from './pages/all';
+import Image from './pages/Image';
 import { useAuthContext } from './pages/useAuthContext';
 import { AuthContextProvider } from './reducer/useReducer';
 
@@ -36,6 +37,7 @@ const Routing = ()=>{
         <Route path='/nb' element={<NB />} />
         <Route path='/rf' element={<RF />} />
         <Route path='/models' element={<MODELS />} />
+        <Route path='/image' element={<Image />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </>

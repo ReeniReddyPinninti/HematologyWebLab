@@ -2,7 +2,7 @@ const users = require("../models/userSchema");
 const userotp = require("../models/userOtp");
 const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
-const twilio = require('twilio'); 
+//const twilio = require('twilio'); 
 
 // email config
 const transporter = nodemailer.createTransport({
@@ -13,9 +13,9 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-const accountSid = process.env.TWILIO_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = twilio(accountSid, authToken);
+// const accountSid = process.env.TWILIO_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+// const client = twilio(accountSid, authToken);
 
 exports.userregister = async (req, res) => {
     const { fname, email, password, phone } = req.body;
@@ -96,11 +96,11 @@ exports.userOtpSend = async (req, res) => {
                             res.status(200).json({ message: "Email sent Successfully" })
                         }
                     })
-                    await client.messages.create({
-                        body: `Your OTP is: ${OTP}`,
-                        to:`+91${user.phone}`,
-                        from: process.env.TWILIO_PHONE_NUMBER,
-                    });
+                    // await client.messages.create({
+                    //     body: `Your OTP is: ${OTP}`,
+                    //     to:`+91${user.phone}`,
+                    //     from: process.env.TWILIO_PHONE_NUMBER,
+                    // });
 
                 } else {
 

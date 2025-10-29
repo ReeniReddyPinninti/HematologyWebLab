@@ -5,7 +5,7 @@ import warnings
 warnings.filterwarnings("ignore")
 pd.set_option('display.max_columns', 5000) # for setting the maximum number of columns to display in pandas dataframes
 
-df = pd.read_csv('/Users/reenipinninti/Documents/ps_code_mern 2/py_code/anemia.csv')
+df = pd.read_csv('/Users/reenipinninti/Documents/Hematology_web_lab/py_code/anemia.csv')
 
 def predict_opt_result_lr(gender, hemoglobin, mcv ):
 

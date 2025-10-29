@@ -34,6 +34,7 @@ const Dashboard = () => {
               <Link to="/nb">Gaussian Naive Bayes</Link><br/>
               <Link to="/lr">Linear Regression</Link><br/>
               <Link to="/models">All models</Link><br/>
+              <Link to="/image">Deep Learning</Link><br/>
             </div>
           )}
         </div>
