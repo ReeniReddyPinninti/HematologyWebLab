@@ -1,23 +1,116 @@
-/* Reset some default styles */
-body, h1, h2, h3, p, ul, li {
+/* CSS Custom Properties for Design System */
+:root {
+  /* Primary Colors */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  /* Medical Theme Colors */
+  --medical-primary: #2563eb;
+  --medical-secondary: #64748b;
+  --medical-accent: #06b6d4;
+  --medical-success: #10b981;
+  --medical-warning: #f59e0b;
+  --medical-error: #ef4444;
+
+  /* Neutral Colors */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /* Semantic Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-alt: var(--gray-50);
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Typography */
+  --font-sans: 'Inter', 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Modern Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Apply a modern font */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html {
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
 }
 
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  background-color: var(--background);
+  color: var(--gray-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern Header */
 header {
-  background: linear-gradient(to right, #4c78af, #456ba0);
-  color: #ecf0f1;
-  padding: 15px 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
+  background: linear-gradient(135deg, var(--medical-primary) 0%, var(--primary-600) 100%);
+  color: var(--white);
+  padding: var(--space-4) 0;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,50 +118,73 @@ header {
 
 h1 {
   margin: 0;
-  font-size: 1.5em; /* Larger font size for the header */
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.025em;
 }
 
 h1 a {
   text-decoration: none;
-  color: #ecf0f1;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+h1 a:hover {
+  opacity: 0.9;
 }
 
 nav {
   display: flex;
   align-items: center;
+  gap: var(--space-6);
 }
 
 nav a,
 nav span,
-button {
-  margin-left: 20px;
+nav button {
   text-decoration: none;
-  color: #ecf0f1;
-  font-size: 1em; /* Adjust font size as needed */
-  transition: color 0.3s ease; /* Smooth transition for text color */
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-button {
-  background-color: transparent; /* Transparent background */
-  color: #ecf0f1;
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s ease;
   border: none;
-  padding: 8px 12px;
+  background: none;
   cursor: pointer;
-  transition: color 0.3s ease; /* Smooth transition for text color */
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
 }
 
-/* Hover effect for the entire header */
-header:hover {
-  background: linear-gradient(to right, #456ba0, #4c78af); /* Reverse gradient on hover */
-}
-
-/* Hover effect for links */
 nav a:hover,
-button:hover {
-  color: white; 
-  text-decoration: underline;
+nav button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
 }
+
+nav span {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-4);
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  nav {
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');

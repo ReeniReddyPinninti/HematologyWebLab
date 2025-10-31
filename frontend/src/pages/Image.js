@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
+import "../styles/mix.css"
 import "../styles/forms.css"
 
 const Image = () => {
@@ -55,39 +56,84 @@ const Image = () => {
   };
 
   return (
-    <div className="section">
-      <div className='data'>
-        <div className='heading'>
-        <h2>Deep Learning </h2>
+    <section>
+      <div className="form_data">
+        <div className="form_heading">
+          <h2>Deep Learning Prediction</h2>
+          <p>Upload a medical image for anemia detection using our advanced deep learning model</p>
         </div>
-      <div className='in'>
-        <label>
-          <input type="file" onChange={handleFileChange} />
-        </label>
-        </div>
-      {imagePreview && (
-        <div>
-          <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', maxHeight: '250px' }} />
-        </div>
-      )}
-      <button className='btn btn-dark' onClick={handlePredict}>Predict</button>
-      {prediction && (
-        <Modal show={showModal} onHide={handleCloseModal} centered>
-          <Modal.Header>
-            <Modal.Title>Prediction Result</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>{prediction}</p>
-          </Modal.Body>
-          <Modal.Footer>
-          <Button variant='secondary' onClick={handleCloseModal} style={{ backgroundColor: '#e45a5a', color: '#fff', border: 'none', borderRadius: '5px', padding: '10px 20px', cursor: 'pointer', transition: 'background-color 0.3s' }}>
-              Close
-          </Button>
-          </Modal.Footer>
-        </Modal>
-      )}
-    </div>
-    </div>
+        
+        <form>
+          <div className="form_input">
+            <label htmlFor="image-upload">Select Medical Image</label>
+            <div className="file-upload-container">
+              <input 
+                id="image-upload"
+                type="file" 
+                onChange={handleFileChange}
+                accept="image/*"
+                className="file-input"
+              />
+              <div className="file-upload-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.2639 15.9375L12.5958 14.2834C12.267 13.9587 11.7408 13.9587 11.4121 14.2834L9.74397 15.9375" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M12.0049 14.6667V8.33337" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M20.6667 12.0001C20.6667 16.6025 16.9357 20.3334 12.3333 20.3334C7.73096 20.3334 4 16.6025 4 12.0001C4 7.39771 7.73096 3.66675 12.3333 3.66675C16.9357 3.66675 20.6667 7.39771 20.6667 12.0001Z" stroke="currentColor" strokeWidth="1.5"/>
+                </svg>
+                Choose Image
+              </div>
+            </div>
+          </div>
+
+          {imagePreview && (
+            <div className="image-preview">
+              <h4>Image Preview</h4>
+              <div className="preview-container">
+                <img src={imagePreview} alt="Medical image preview" />
+              </div>
+            </div>
+          )}
+
+          <button 
+            type="button" 
+            className="btn" 
+            onClick={handlePredict}
+            disabled={!file}
+          >
+            Analyze Image
+          </button>
+        </form>
+
+        {prediction && (
+          <Modal show={showModal} onHide={handleCloseModal} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Analysis Result</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="prediction-result">
+                <div className="result-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" strokeWidth="2"/>
+                  </svg>
+                </div>
+                <h5>Prediction Complete</h5>
+                <p className="result-text">{prediction}</p>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button 
+                variant="secondary" 
+                onClick={handleCloseModal}
+                className="modal-close-btn"
+              >
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
+      </div>
+    </section>
   );
 };
 

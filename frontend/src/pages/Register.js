@@ -55,42 +55,92 @@ const Register = () => {
 
 
   return (
-    <>
-      <section>
-        <div className="form_data">
-          <div className="form_heading">
-            <h1>Sign Up</h1>
-            <p style={{textAlign:"center"}}>Welcome</p>
-          </div>
-          <form>
-            <div className="form_input">
-              <label htmlFor="fname">Name</label>
-              <input type="text" name="fname" id="" onChange={handleChange} placeholder='Enter Your Name' />
-            </div>
-            <div className="form_input">
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" id=""  onChange={handleChange}  placeholder='Enter Your Email Address' />
-            </div>
-            <div className="form_input">
-              <label htmlFor="phone">Phone</label>
-              <input type="phone" name="phone" id=""  onChange={handleChange}  placeholder='Enter Your phone no' />
-            </div>
-            <div className="form_input">
-              <label htmlFor="password">Password</label>
-              <div className='two'>
-              <input type={!passhow ? "password" : "text"} name="password" id=""  onChange={handleChange}  placeholder='Enter Your password' />
-              <div className='showpass' onClick={()=>setPassShow(!passhow)} >
-              {!passhow ? "Show" : "Hide"}
-              </div>
-              </div>
-            </div>
-            <button className='btn' onClick={handleSubmit}>Sign Up</button>
-            <p>Already have an accoun?t <NavLink to="/">Log in</NavLink> </p>
-          </form>
+    <section>
+      <div className="form_data">
+        <div className="form_heading">
+          <h1>Create Account</h1>
+          <p>Join our hematology analysis platform to get started</p>
         </div>
-        <ToastContainer />
-      </section>
-    </>
+        <form>
+          <div className="form_input">
+            <label htmlFor="fname">Full Name</label>
+            <input 
+              type="text" 
+              name="fname" 
+              id="fname"
+              value={inputdata.fname}
+              onChange={handleChange} 
+              placeholder='Enter your full name'
+              required
+            />
+          </div>
+          <div className="form_input">
+            <label htmlFor="email">Email Address</label>
+            <input 
+              type="email" 
+              name="email" 
+              id="email"
+              value={inputdata.email}
+              onChange={handleChange}  
+              placeholder='Enter your email address'
+              required
+            />
+          </div>
+          <div className="form_input">
+            <label htmlFor="phone">Phone Number</label>
+            <input 
+              type="tel" 
+              name="phone" 
+              id="phone"
+              value={inputdata.phone}
+              onChange={handleChange}  
+              placeholder='Enter your phone number'
+            />
+          </div>
+          <div className="form_input">
+            <label htmlFor="password">Password</label>
+            <div className='two' style={{position: 'relative'}}>
+              <input 
+                type={!passhow ? "password" : "text"} 
+                name="password" 
+                id="password"
+                value={inputdata.password}
+                onChange={handleChange}  
+                placeholder='Create a secure password'
+                required
+              />
+              <button 
+                type="button"
+                className='showpass' 
+                onClick={() => setPassShow(!passhow)}
+              >
+                {!passhow ? "👁️" : "🙈"}
+              </button>
+            </div>
+          </div>
+          <button 
+            className='btn' 
+            onClick={handleSubmit}
+            type="button"
+          >
+            Create Account
+          </button>
+          <p>Already have an account? <NavLink to="/">Sign in here</NavLink></p>
+        </form>
+      </div>
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </section>
   )
 }
 

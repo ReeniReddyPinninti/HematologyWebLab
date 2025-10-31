@@ -36,49 +36,123 @@ const DT = () => {
   };
 
   return (
-    <>
     <section>
-    <div className="form_data">
+      <div className="form_data">
         <div className="form_heading">
-              <h2>Decision Tree</h2>
-              <p>This model is 100% accurate</p>
+          <h2>Decision Tree Model</h2>
+          <p>Advanced machine learning model with high accuracy for anemia prediction</p>
         </div>
+        
         <form>
-          <div className="form_input">
-            <label htmlFor='gender'>Gender</label><br />
-            <input type="number" value={gender} onChange={(e) => setGender(e.target.value)} />
+          <div className="input-fields">
+            <div className="form_input">
+              <label htmlFor='gender'>Gender</label>
+              <input 
+                type="number" 
+                id="gender"
+                value={gender} 
+                onChange={(e) => setGender(e.target.value)}
+                placeholder="Enter gender (0 for Male, 1 for Female)"
+              />
+            </div>
+            
+            <div className="form_input">
+              <label htmlFor='haemoglobin'>Haemoglobin (g/dL)</label>
+              <input 
+                type="number" 
+                id="haemoglobin"
+                step="0.1"
+                value={haemoglobin} 
+                onChange={(e) => setHaemoglobin(e.target.value)}
+                placeholder="Enter haemoglobin level"
+              />
+            </div>
+            
+            <div className="form_input">
+              <label htmlFor='mch'>MCH (pg)</label>
+              <input 
+                type="number" 
+                id="mch"
+                step="0.1"
+                value={mch} 
+                onChange={(e) => setMch(e.target.value)}
+                placeholder="Mean Corpuscular Hemoglobin"
+              />
+            </div>
+            
+            <div className="form_input">
+              <label htmlFor='mchc'>MCHC (g/dL)</label>
+              <input 
+                type="number" 
+                id="mchc"
+                step="0.1"
+                value={mchc} 
+                onChange={(e) => setMchc(e.target.value)}
+                placeholder="Mean Corpuscular Hemoglobin Concentration"
+              />
+            </div>
+            
+            <div className="form_input">
+              <label htmlFor='mcv'>MCV (fL)</label>
+              <input 
+                type="number" 
+                id="mcv"
+                step="0.1"
+                value={mcv} 
+                onChange={(e) => setMcv(e.target.value)}
+                placeholder="Mean Corpuscular Volume"
+              />
+            </div>
           </div>
-          <div className="form_input">
-            <label htmlFor='haemoglobin'>Haemoglobin</label><br />
-            <input type="number" value={haemoglobin} onChange={(e) => setHaemoglobin(e.target.value)} />
-          </div>
-          <div className="form_input">
-            <label htmlFor='mch'>MCH</label><br />
-            <input type="number" value={mch} onChange={(e) => setMch(e.target.value)} />
-          </div>
-          <div className="form_input">
-            <label htmlFor='mchc'>MCHC</label><br />
-            <input type="number" value={mchc} onChange={(e) => setMchc(e.target.value)} />
-          </div>
-          <div className="form_input">
-            <label htmlFor='mcv'>MCV</label><br />
-            <input type="number" value={mcv} onChange={(e) => setMcv(e.target.value)} />
-          </div>
-          
+
+          <button 
+            type="button"
+            className='btn' 
+            onClick={() => makeoptPrediction({ gender, haemoglobin, mch, mchc, mcv })}
+          >
+            Predict (Optimized Features)
+          </button>
+
+          <button 
+            type="button"
+            className="btn" 
+            onClick={() => makePrediction({ gender, haemoglobin, mch, mchc, mcv })}
+          >
+            Predict (All Features)
+          </button>
         </form>
 
-      <button className='btn' onClick={() => makeoptPrediction({ gender, haemoglobin, mch, mchc, mcv })}>
-        Predict Optimized
-      </button>
-      {predictionOptimized !== null && <p>Prediction Result (Optimized): {predictionOptimized}</p>}
+        {(predictionOptimized !== null || predictionAllFeatures !== null) && (
+          <div className="results-section">
+            <h3>Prediction Results</h3>
+            
+            {predictionOptimized !== null && (
+              <div className={`result-item ${predictionOptimized === 1 ? 'result-positive' : 'result-negative'}`}>
+                <h4>Optimized Model Result</h4>
+                <p>
+                  {predictionOptimized === 1 
+                    ? 'Anemia detected - Please consult with a healthcare professional' 
+                    : 'No anemia detected - Results look normal'
+                  }
+                </p>
+              </div>
+            )}
 
-      <button className="btn" onClick={() => makePrediction({ gender,haemoglobin, mch, mchc,mcv })}>
-        Predict All Features
-      </button>
-      {predictionAllFeatures !== null && <p>Prediction Result (All Features): {predictionAllFeatures}</p>}
-    </div>
-  </section>
-  </>
+            {predictionAllFeatures !== null && (
+              <div className={`result-item ${predictionAllFeatures === 1 ? 'result-positive' : 'result-negative'}`}>
+                <h4>All Features Model Result</h4>
+                <p>
+                  {predictionAllFeatures === 1 
+                    ? 'Anemia detected - Please consult with a healthcare professional' 
+                    : 'No anemia detected - Results look normal'
+                  }
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
   )   
 }
 

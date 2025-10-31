@@ -1,37 +1,120 @@
-/* CSS for the table */
-table {
+/* Modern Table Styles */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    margin: 2rem 0;
+}
+
+table,
+.modern-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 16px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 12px;
+    font-size: 0.95rem;
+    background: white;
+}
+
+table thead,
+.modern-table thead {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+}
+
+table thead th,
+.modern-table thead th {
+    padding: 1rem 1.5rem;
     text-align: left;
-  }
-  
-  th {
-    background-color: #3498db;
-    color: #ecf0f1;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  /* Hover effect for table rows */
-  tr:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* Add a bit of spacing between cells */
-  td:not(:last-child),
-  th:not(:last-child) {
-    margin-right: 5px;
-  }
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    border: none;
+}
+
+table tbody tr,
+.modern-table tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover,
+.modern-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+table tbody tr:last-child,
+.modern-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+table tbody td,
+.modern-table tbody td {
+    padding: 1rem 1.5rem;
+    color: #374151;
+    vertical-align: middle;
+    border: none;
+}
+
+table tbody td:first-child,
+.modern-table tbody td:first-child {
+    font-weight: 600;
+    color: #2563eb;
+}
+
+/* Legacy support for existing table styles */
+table, th, td {
+    border: none;
+}
+
+th {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+}
+
+td {
+    padding: 1rem 1.5rem;
+    color: #374151;
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-container {
+        margin: 1rem 0;
+        border-radius: 0.75rem;
+    }
+    
+    table,
+    .modern-table {
+        font-size: 0.875rem;
+    }
+    
+    table thead th,
+    table tbody td,
+    .modern-table thead th,
+    .modern-table tbody td {
+        padding: 0.75rem 1rem;
+    }
+    
+    th {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    td {
+        padding: 0.75rem 1rem;
+    }
+}
   

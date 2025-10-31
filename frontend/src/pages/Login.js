@@ -49,32 +49,60 @@ const Login = () => {
     }
 
     return (
-        <>
-            <section>
-                <div className="form_data">
-                    <div className="form_heading">
-                        <h1>Welcome Back, Log In</h1>
-                    </div>
-                    <form>
-                        <div className="form_input">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name="email" id="" onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email Address' />
-                        </div>
-                        <div className="form_input">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="email" id="" onChange={(e) => setPassword(e.target.value)} placeholder='Enter Password' />
-                        </div>
-                        <button className='btn' onClick={sendOtp}>Login
-                        {
-                            spiner ? <span><Spinner animation="border" /></span>:""
-                        }
-                        </button>
-                        <p>Don't have an account? <NavLink to="/register">Sign up</NavLink> </p>
-                    </form>
+        <section>
+            <div className="form_data">
+                <div className="form_heading">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to access your hematology analysis dashboard</p>
                 </div>
-                <ToastContainer />
-            </section>
-        </>
+                <form>
+                    <div className="form_input">
+                        <label htmlFor="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email"
+                            onChange={(e) => setEmail(e.target.value)} 
+                            placeholder='Enter your email address'
+                            required
+                        />
+                    </div>
+                    <div className="form_input">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            onChange={(e) => setPassword(e.target.value)} 
+                            placeholder='Enter your password'
+                            required
+                        />
+                    </div>
+                    <button 
+                        className={`btn ${spiner ? 'loading' : ''}`} 
+                        onClick={sendOtp}
+                        disabled={spiner}
+                        type="button"
+                    >
+                        {spiner ? 'Signing In...' : 'Sign In'}
+                        {spiner && <Spinner animation="border" />}
+                    </button>
+                    <p>Don't have an account? <NavLink to="/register">Create one here</NavLink></p>
+                </form>
+            </div>
+            <ToastContainer 
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+        </section>
     )
 }
 
