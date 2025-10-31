@@ -16,7 +16,6 @@ A full-stack web application for hematology analysis and prediction, integrating
   - [Frontend](#frontend)
   - [Backend (Node.js)](#backend-nodejs)
   - [Python ML Service (`py_code/app.py`)](#python-ml-service-py_codeapppy)
-  - [Components Interaction](#components-interaction)
 - [Main Features](#main-features)
 - [Data Flow Example](#data-flow-example)
 - [Technology Stack](#technology-stack)
@@ -91,15 +90,9 @@ A full-stack web application for hematology analysis and prediction, integrating
 - Deep learning image classification handled at `/dl_predict` (accepts image uploads and predicts cell type using a Keras model).
 - CORS enabled to allow requests from the backend.
 
-### Components Interaction
-
-![Architecture Diagram](./assets/architecture-diagram.png)
-*System architecture showing the interaction between frontend, backend, and ML services*
 
 #### Data/Request Flow
 
-![Data Flow Diagram](./assets/data-flow.png)
-*Visual representation of data flow through the application*
 
 1. **User Action:** User submits input data or uploads an image on the frontend.
 2. **Frontend Request:** The React app sends a POST request to the Node backend (`/user/predict_*` or `/user/register`, etc.).
