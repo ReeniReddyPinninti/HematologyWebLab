@@ -180,53 +180,6 @@ A full-stack web application for hematology analysis and prediction, integrating
 
 ---
 
-## Adding Images to README
-
-There are several ways to add images to your README.md file:
-
-### 1. Local Images (Recommended)
-Store images in the `assets/` folder and reference them:
-```markdown
-![Alt text](./assets/image-name.png)
-![Dashboard](./assets/screenshots/dashboard.png)
-```
-
-### 2. Online Images
-Use direct URLs to hosted images:
-```markdown
-![Alt text](https://example.com/image.png)
-```
-
-### 3. With Links
-Make images clickable:
-```markdown
-[![Alt text](./assets/image.png)](https://your-live-demo-url.com)
-```
-
-### 4. HTML for More Control
-Use HTML tags for sizing and alignment:
-```html
-<img src="./assets/image.png" alt="Description" width="500" height="300">
-<p align="center">
-  <img src="./assets/centered-image.png" alt="Centered Image">
-</p>
-```
-
-### 5. Badges and Shields
-Add technology badges:
-```markdown
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-```
-
-### Image Best Practices
-
-- **File Size**: Keep images under 2MB for fast loading
-- **Format**: Use PNG for screenshots, SVG for diagrams, JPG for photos
-- **Alt Text**: Always include descriptive alt text
-- **Organization**: Store images in `assets/` or `images/` folder
-- **Naming**: Use descriptive, kebab-case names (`login-page.png`)
-
----
 
 ## Contributing
 
