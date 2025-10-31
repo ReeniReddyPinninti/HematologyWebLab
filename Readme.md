@@ -1,8 +1,5 @@
 # Hematology Web Lab
 
-<!-- You can add a logo/banner image here -->
-![Hematology Lab Banner](./assets/banner.png)
-
 A full-stack web application for hematology analysis and prediction, integrating multiple machine learning models, a deep learning image classifier, user authentication, and a modern frontend interface.
 
 <!-- You can add badges here -->
@@ -53,24 +50,19 @@ A full-stack web application for hematology analysis and prediction, integrating
 ## Screenshots
 
 ### Dashboard
-![Dashboard Screenshot](./assets/screenshots/dashboard.png)
-*Modern and intuitive dashboard with prediction model selection*
+<img width="1440" height="900" alt="Screenshot 2025-10-31 at 7 00 21 PM" src="https://github.com/user-attachments/assets/e5c90168-ce94-46c3-b9b7-5701d1bca4a5" />
 
 ### Login Interface
-![Login Screenshot](./assets/screenshots/login.png)
-*Clean authentication interface with modern design*
+<img width="1440" height="900" alt="Screenshot 2025-10-31 at 6 58 53 PM" src="https://github.com/user-attachments/assets/58173f84-a888-48c9-a6f3-cc04ee1b4d63" />
+
 
 ### Prediction Forms
-![Prediction Form](./assets/screenshots/prediction-form.png)
-*User-friendly forms for entering medical data*
+<img width="1440" height="900" alt="Screenshot 2025-10-31 at 7 00 41 PM" src="https://github.com/user-attachments/assets/dc45e634-79b8-4b0f-95df-9a42c796b8b5" />
 
-### Results Display
-![Results Screenshot](./assets/screenshots/results.png)
-*Clear visualization of prediction results*
 
 ### Image Analysis
-![Image Analysis](./assets/screenshots/image-analysis.png)
-*Deep learning image analysis interface*
+<img width="1440" height="900" alt="Screenshot 2025-10-31 at 7 01 15 PM" src="https://github.com/user-attachments/assets/bf2e5445-d368-4bfc-8a08-d86d6197a354" />
+
 
 ---
 
