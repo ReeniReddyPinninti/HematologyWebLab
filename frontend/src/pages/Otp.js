@@ -42,20 +42,29 @@ const Otp = () => {
 
   return (
     <>
-      <section>
-        <div className="form_data">
-          <div className="form_heading">
-            <h1>Please Enter Your OTP Here</h1>
+      <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem', backgroundColor: 'white' }}>
+        <div className="card-modern animate-fade-in">
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h1 style={{ fontSize: '1.75rem', color: 'var(--primary-600)', marginBottom: '0.5rem' }}>Two-Factor Authentication</h1>
+            <p style={{ color: 'var(--gray-500)' }}>Please enter the OTP sent to your email</p>
           </div>
           <form>
-            <div className="form_input">
-              <label htmlFor="otp">OTP</label>
-              <input type="text" name="otp" id="" onChange={(e) => setOtp(e.target.value)} placeholder='Enter Your OTP' />
+            <div className="form-group">
+              <label className="form-label" htmlFor="otp">OTP Code</label>
+              <input 
+                className="form-control-modern"
+                type="text" 
+                name="otp" 
+                id="otp" 
+                onChange={(e) => setOtp(e.target.value)} 
+                placeholder='Enter 6-digit OTP' 
+                maxLength="6"
+              />
             </div>
-            <button className='btn' onClick={LoginUser}>Submit</button>
+            <button className='btn-modern' onClick={LoginUser} style={{ marginTop: '1rem' }}>Verify & Sign In</button>
           </form>
         </div>
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={5000} />
       </section>
     </>
   )

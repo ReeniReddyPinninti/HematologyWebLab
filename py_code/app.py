@@ -169,29 +169,66 @@ def predict_rf():
 #     except Exception as e:
 #         return jsonify({'error': str(e)})
 
+# @app.route('/dl_predict', methods=['POST', 'OPTIONS'])
+# @cross_origin(origins='*')  # ensure this stays directly above the route
+# def dl_predict():
+#     if request.method == "OPTIONS":
+#         # Preflight request — just return OK
+#         return jsonify({'message': 'CORS preflight passed'}), 200
+
+#     try:
+#         model = load_model('/Users/reenipinninti/Documents/Hematology_web_lab copy/py_code/wbc_cnn_model.h5')
+#         if 'image' not in request.files:
+#             return jsonify({'error': "No 'image' key in request files."})
+
+#         image_file = request.files['image']
+#         img = Image.open(image_file.stream)
+#         img = img.resize((100, 100))
+#         img_array = img_to_array(img) / 255.0
+#         img_array = np.expand_dims(img_array, axis=0)
+
+#         prediction = model.predict(img_array)
+#         predicted_class = np.argmax(prediction)
+
+#         return jsonify({'predictionResult': 'Neutrophil' if predicted_class == 0 else 'Eosinophil'})
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
+
+
 @app.route('/dl_predict', methods=['POST', 'OPTIONS'])
-@cross_origin(origins='*')  # ensure this stays directly above the route
+@cross_origin(origins='*')
 def dl_predict():
     if request.method == "OPTIONS":
-        # Preflight request — just return OK
         return jsonify({'message': 'CORS preflight passed'}), 200
 
     try:
-        model = load_model('/Users/reenipinninti/Documents/Hematology_web_lab/py_code/dl_model.h5')
+        model = load_model(
+            '/Users/reenipinninti/Documents/Hematology_web_lab copy/py_code/wbc_cnn_model.h5'
+        )
+
         if 'image' not in request.files:
-            return jsonify({'error': "No 'image' key in request files."})
+            return jsonify({'error': "No image uploaded"}), 400
 
         image_file = request.files['image']
-        img = Image.open(image_file.stream)
+
+        # ✅ MUST MATCH TRAINING
+        img = Image.open(image_file).convert('L')  # GRAYSCALE
         img = img.resize((100, 100))
+
         img_array = img_to_array(img) / 255.0
-        img_array = np.expand_dims(img_array, axis=0)
+        img_array = np.expand_dims(img_array, axis=0)  # (1,100,100,1)
 
-        prediction = model.predict(img_array)
-        predicted_class = np.argmax(prediction)
+        prediction = model.predict(img_array)[0][0]  # sigmoid output
 
-        return jsonify({'predictionResult': 'Neutrophil' if predicted_class == 0 else 'Eosinophil'})
+        result = "Neutrophil" if prediction < 0.5 else "Eosinophil"
+
+        return jsonify({
+            'predictionResult': result,
+            'confidence': float(prediction)
+        })
+
     except Exception as e:
+        print("DL ERROR:", e)  # IMPORTANT for debugging
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':

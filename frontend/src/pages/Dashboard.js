@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import "../styles/dropdown.css"
-import "../styles/dashboard.css"
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -13,13 +11,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container animate-fade-in">
       <div className="dashboard-header">
         <h1>Hematology Lab</h1>
         <p className="subtitle">
           Predicting Anemia for a Healthier Tomorrow
         </p>
-        <p>
+        <p style={{ maxWidth: '800px', margin: '0 auto', color: 'var(--gray-600)' }}>
           Unlock personalized insights on your anemia risk with our advanced predictive tools. 
           Our platform uses cutting-edge analytics to forecast anemia likelihood, empowering you 
           to take proactive steps towards a healthier life.

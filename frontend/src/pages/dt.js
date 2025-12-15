@@ -105,21 +105,23 @@ const DT = () => {
             </div>
           </div>
 
-          <button 
-            type="button"
-            className='btn' 
-            onClick={() => makeoptPrediction({ gender, haemoglobin, mch, mchc, mcv })}
-          >
-            Predict (Optimized Features)
-          </button>
+          <div className="prediction-buttons">
+            <button 
+              type="button"
+              className='btn btn-optimized' 
+              onClick={() => makeoptPrediction({ gender, haemoglobin, mch, mchc, mcv })}
+            >
+              Predict (Optimized Features)
+            </button>
 
-          <button 
-            type="button"
-            className="btn" 
-            onClick={() => makePrediction({ gender, haemoglobin, mch, mchc, mcv })}
-          >
-            Predict (All Features)
-          </button>
+            <button 
+              type="button"
+              className="btn btn-all-features" 
+              onClick={() => makePrediction({ gender, haemoglobin, mch, mchc, mcv })}
+            >
+              Predict (All Features)
+            </button>
+          </div>
         </form>
 
         {(predictionOptimized !== null || predictionAllFeatures !== null) && (

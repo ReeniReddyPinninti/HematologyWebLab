@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {registerfunction} from "../services/Apis";
 import {useNavigate} from "react-router-dom"
 import { NavLink } from "react-router-dom"
-import "../styles/mix.css"
+
 
 const Register = () => {
 
@@ -55,16 +55,17 @@ const Register = () => {
 
 
   return (
-    <section>
-      <div className="form_data">
-        <div className="form_heading">
-          <h1>Create Account</h1>
-          <p>Join our hematology analysis platform to get started</p>
+    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem', backgroundColor: 'white' }}>
+      <div className="card-modern animate-fade-in">
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ fontSize: '1.75rem', color: 'var(--primary-600)', marginBottom: '0.5rem' }}>Create Account</h1>
+          <p style={{ color: 'var(--gray-500)' }}>Join our hematology analysis platform to get started</p>
         </div>
         <form>
-          <div className="form_input">
-            <label htmlFor="fname">Full Name</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="fname">Full Name</label>
             <input 
+              className="form-control-modern"
               type="text" 
               name="fname" 
               id="fname"
@@ -74,9 +75,10 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form_input">
-            <label htmlFor="email">Email Address</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">Email Address</label>
             <input 
+              className="form-control-modern"
               type="email" 
               name="email" 
               id="email"
@@ -86,9 +88,10 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form_input">
-            <label htmlFor="phone">Phone Number</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="phone">Phone Number</label>
             <input 
+              className="form-control-modern"
               type="tel" 
               name="phone" 
               id="phone"
@@ -97,10 +100,11 @@ const Register = () => {
               placeholder='Enter your phone number'
             />
           </div>
-          <div className="form_input">
-            <label htmlFor="password">Password</label>
-            <div className='two' style={{position: 'relative'}}>
+          <div className="form-group">
+            <label className="form-label" htmlFor="password">Password</label>
+            <div className="input-group">
               <input 
+                className="form-control-modern"
                 type={!passhow ? "password" : "text"} 
                 name="password" 
                 id="password"
@@ -111,21 +115,24 @@ const Register = () => {
               />
               <button 
                 type="button"
-                className='showpass' 
+                className='btn-icon' 
                 onClick={() => setPassShow(!passhow)}
+                aria-label={passhow ? "Hide password" : "Show password"}
               >
-                {!passhow ? "👁️" : "🙈"}
+                {passhow ? "🙈" : "👁️"}
               </button>
             </div>
           </div>
           <button 
-            className='btn' 
+            className='btn-modern' 
             onClick={handleSubmit}
             type="button"
           >
             Create Account
           </button>
-          <p>Already have an account? <NavLink to="/">Sign in here</NavLink></p>
+          <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--gray-500)', fontSize: '0.9rem' }}>
+            Already have an account? <NavLink to="/" style={{ color: 'var(--primary-600)', fontWeight: '600' }}>Sign in here</NavLink>
+          </p>
         </form>
       </div>
       <ToastContainer 

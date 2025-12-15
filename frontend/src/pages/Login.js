@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import { sentOtpFunction } from "../services/Apis";
 import Spinner from 'react-bootstrap/Spinner';
-import "../styles/mix.css"
 
 const Login = () => {
 
@@ -12,8 +11,6 @@ const Login = () => {
     const [spiner,setSpiner] = useState(false);
 
     const navigate = useNavigate();
-
-
 
     // sendotp
     const sendOtp = async (e) => {
@@ -44,21 +41,23 @@ const Login = () => {
                 
             } else {
                 toast.error(response.response.data.error);
+                setSpiner(false); // Make sure to stop spinner on error
             }
         }
     }
 
     return (
-        <section>
-            <div className="form_data">
-                <div className="form_heading">
-                    <h1>Welcome Back</h1>
-                    <p>Sign in to access your hematology analysis dashboard</p>
+        <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem', backgroundColor: 'white' }}>
+            <div className="card-modern animate-fade-in">
+                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <h1 style={{ fontSize: '1.75rem', color: 'var(--primary-600)', marginBottom: '0.5rem' }}>Welcome Back</h1>
+                    <p style={{ color: 'var(--gray-500)' }}>Sign in to access your hematology analysis dashboard</p>
                 </div>
                 <form>
-                    <div className="form_input">
-                        <label htmlFor="email">Email Address</label>
+                    <div className="form-group">
+                        <label className="form-label" htmlFor="email">Email Address</label>
                         <input 
+                            className="form-control-modern"
                             type="email" 
                             name="email" 
                             id="email"
@@ -67,9 +66,10 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <div className="form_input">
-                        <label htmlFor="password">Password</label>
+                    <div className="form-group">
+                        <label className="form-label" htmlFor="password">Password</label>
                         <input 
+                            className="form-control-modern"
                             type="password" 
                             name="password" 
                             id="password"
@@ -79,15 +79,21 @@ const Login = () => {
                         />
                     </div>
                     <button 
-                        className={`btn ${spiner ? 'loading' : ''}`} 
+                        className="btn-modern" 
                         onClick={sendOtp}
                         disabled={spiner}
                         type="button"
                     >
-                        {spiner ? 'Signing In...' : 'Sign In'}
-                        {spiner && <Spinner animation="border" />}
+                        {spiner ? (
+                            <>
+                                <span>Signing In...</span>
+                                <Spinner animation="border" size="sm" style={{ marginLeft: '0.5rem' }} />
+                            </>
+                        ) : 'Sign In'}
                     </button>
-                    <p>Don't have an account? <NavLink to="/register">Create one here</NavLink></p>
+                    <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--gray-500)', fontSize: '0.9rem' }}>
+                        Don't have an account? <NavLink to="/register" style={{ color: 'var(--primary-600)', fontWeight: '600' }}>Create one here</NavLink>
+                    </p>
                 </form>
             </div>
             <ToastContainer 

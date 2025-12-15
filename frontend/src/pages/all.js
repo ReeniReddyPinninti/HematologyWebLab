@@ -254,34 +254,46 @@ const MODELS = () => {
   };
 
   const renderInputFields = () => {
+    const fieldLabels = {
+      gender: 'Gender (0=Male, 1=Female)',
+      haemoglobin: 'Haemoglobin (g/dL)',
+      mch: 'MCH (pg)',
+      mchc: 'MCHC (g/dL)',
+      mcv: 'MCV (fL)',
+      result: 'Expected Result'
+    };
+
     return (
-      <div className="input-fields">
+      <>
         {selectedTestData
           ? Object.keys(testingData[0]).map((key, index) => (
-              <React.Fragment key={index}>
-                <label htmlFor={key}>{key}</label>
+              <div key={index} className="form_input">
+                <label htmlFor={key}>{fieldLabels[key] || key}</label>
                 <input
-                  type="text"
+                  type={key === 'result' ? 'text' : 'number'}
                   id={key}
                   name={key}
                   value={formData[key] || ""}
-                  disabled
+                  disabled={selectedTestData !== null}
+                  placeholder={key === 'result' ? 'Expected outcome' : `Enter ${key} value`}
                 />
-              </React.Fragment>
+              </div>
             ))
           : Object.keys(testingData[0]).map((key, index) => (
-              <React.Fragment key={index}>
-                <label htmlFor={key}>{key}</label>
+              <div key={index} className="form_input">
+                <label htmlFor={key}>{fieldLabels[key] || key}</label>
                 <input
-                  type="text"
+                  type={key === 'result' ? 'text' : 'number'}
                   id={key}
                   name={key}
                   onChange={handleInputChange}
                   value={formData[key] || ""}
+                  placeholder={key === 'result' ? 'Expected outcome' : `Enter ${key} value`}
+                  step={key !== 'gender' && key !== 'result' ? '0.1' : undefined}
                 />
-              </React.Fragment>
+              </div>
             ))}
-      </div>
+      </>
     );
   };
 
@@ -346,33 +358,45 @@ const MODELS = () => {
     <section>
       <div className="form_data">
         <div className="form_heading">
-          <h2>Models</h2>
+          <h2>Model Comparison</h2>
+          <p>Compare predictions from all machine learning models using the same input data</p>
         </div>
+        
         <div className="form_input">
           <label htmlFor="selectedTestData">Select Test Data</label>
           <select
+            id="selectedTestData"
             name="selectedTestData"
             onChange={handleDropdownChange}
             value={selectedTestData ? JSON.stringify(selectedTestData) : ""}
           >
             <option value="" disabled>
-              Select Test Data
+              Choose a test dataset
             </option>
             {testingData.map((data, index) => (
               <option key={index} value={JSON.stringify(data)}>
-                Test {index + 1}
+                Test Dataset {index + 1} - {data.result}
               </option>
             ))}
           </select>
         </div>
-        <div className="user_input_fields">
+        
+        <div className="input-fields">
           {renderInputFields()}
-          <button className="btn" onClick={handleButtonClick}>
-            Make Predictions
-          </button>
         </div>
+        
+        <button className="btn" onClick={handleButtonClick}>
+          🧬 Compare All Models
+        </button>
 
-        {showTable && renderTable()}
+        {showTable && (
+          <div className="results-section">
+            <h3>Model Comparison Results</h3>
+            <div className="table-container">
+              {renderTable()}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
